@@ -1,0 +1,85 @@
+{% extends 'viaturas/base.html' %}
+
+{% block content %}
+
+<style>
+.page-title {
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #0f172a;
+    text-align: center;
+}
+
+.form-card {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #334155;
+}
+
+.btn-success {
+    background: #22c55e;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.btn-success:hover {
+    background: #16a34a;
+}
+</style>
+
+<h3 class="page-title">🚗 Formulário de Viatura</h3>
+
+<div class="form-card">
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">Marca</label>
+            <input type="text" name="marca" class="form-control"
+                   value="{{ viatura.marca|default:'' }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Modelo</label>
+            <input type="text" name="modelo" class="form-control"
+                   value="{{ viatura.modelo|default:'' }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Ano</label>
+            <input type="number" name="ano" class="form-control"
+                   value="{{ viatura.ano|default:'' }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Preço</label>
+            <input type="number" name="preco" class="form-control"
+                   value="{{ viatura.preco|default:'' }}" required>
+        </div>
+
+        <button class="btn btn-success w-100">
+            💾 Guardar Viatura
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

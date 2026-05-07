@@ -1,0 +1,83 @@
+{% extends 'viaturas/base.html' %}
+
+{% block content %}
+
+<style>
+.page-title {
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #0f172a;
+}
+
+.card-table {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.table thead {
+    background: #0f172a;
+    color: white;
+}
+
+.table tbody tr:hover {
+    background: #f1f5f9;
+}
+
+.btn-warning {
+    background: #fbbf24;
+    border: none;
+    color: black;
+}
+
+.btn-danger {
+    background: #ef4444;
+    border: none;
+}
+</style>
+
+<div class="card-table">
+
+    <h3 class="page-title">🚗 Lista de Viaturas</h3>
+
+    <table class="table table-hover table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Ano</th>
+                <th>Preço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for v in viaturas %}
+            <tr>
+                <td>{{ v.marca }}</td>
+                <td>{{ v.modelo }}</td>
+                <td>{{ v.ano }}</td>
+                <td>
+                    <span class="badge bg-primary">
+                        {{ v.preco }} MZN
+                    </span>
+                </td>
+
+                <td>
+                    <a class="btn btn-warning btn-sm" href="{% url 'edit' v.id %}">✏️ Editar</a>
+                    <a class="btn btn-danger btn-sm"
+                       href="{% url 'delete' v.id %}"
+                       onclick="return confirm('Eliminar esta viatura?')">
+                       ❌ Eliminar
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

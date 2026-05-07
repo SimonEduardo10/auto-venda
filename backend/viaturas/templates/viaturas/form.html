@@ -1,0 +1,23 @@
+<h1>Adicionar Viatura</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <input type="text" name="marca" placeholder="Marca">
+    <br><br>
+
+    <input type="text" name="modelo" placeholder="Modelo">
+    <br><br>
+
+    <input type="number" name="ano" placeholder="Ano">
+    <br><br>
+
+    <input type="number" step="0.01" name="preco" placeholder="Preço">
+    <br><br>
+
+    <button type="submit">
+        Salvar
+    </button>
+
+</form>

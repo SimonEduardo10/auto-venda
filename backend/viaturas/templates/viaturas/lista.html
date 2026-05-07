@@ -1,0 +1,15 @@
+<h1>Lista de Viaturas</h1>
+
+<a href="/add/">Adicionar Viatura</a>
+
+<hr>
+
+<ul>
+    {% for v in viaturas %}
+        <li>
+            {{ v.marca }} {{ v.modelo }}
+            | Ano: {{ v.ano }}
+            | Preço: {{ v.preco }}
+        </li>
+    {% endfor %}
+</ul>
