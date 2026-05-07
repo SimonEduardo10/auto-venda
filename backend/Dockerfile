@@ -8,8 +8,8 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-RUN chmod +x build.sh
-RUN ./build.sh
+# migrations automáticas
+RUN python manage.py migrate --noinput
 
 EXPOSE 8000
 
