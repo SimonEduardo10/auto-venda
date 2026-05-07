@@ -9,10 +9,14 @@ SECRET_KEY = 'django-insecure-=qn-bz8qz@=+ql8%^wds$*o5djel(#t=l7'
 
 DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get(
-    'ALLOWED_HOSTS',
-    '.onrender.com,localhost,127.0.0.1'
-).split(',')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+
+if not ALLOWED_HOSTS or ALLOWED_HOSTS == ['']:
+    ALLOWED_HOSTS = [
+        '127.0.0.1',
+        'localhost',
+        '.onrender.com',
+    ]
 
 
 INSTALLED_APPS = [
@@ -62,7 +66,8 @@ WSGI_APPLICATION = 'autovenda.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600
     )
 }
 
