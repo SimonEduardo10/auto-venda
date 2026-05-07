@@ -8,9 +8,8 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-# migrations automáticas
-RUN python manage.py migrate --noinput
+RUN chmod +x entrypoint.sh
 
 EXPOSE 8000
 
-CMD ["gunicorn", "autovenda.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["./entrypoint.sh"]
